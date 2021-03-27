@@ -9,7 +9,7 @@ $(document).ready(function() {
     let promise = CurrencyExchange.getConversion(currency);
     promise.then(function(response) {
       const body = JSON.parse(response);
-        $(".showRates").text(`${USD} US Dollar = ${currency}`);
+        $("#output").text(`${USD} US Dollar = ${currency}`);
       }, function(error) {
         $(".showErrors").text(`There was an error processing your request ${error}`);
     });
