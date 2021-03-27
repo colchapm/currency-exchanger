@@ -2,12 +2,28 @@
 <html lang="en-US">
 
 <head>
-  <title>Document</title>
-  <!-- When change this title must change title in webpack.config.js plugins section and in package.json -->
+  <title>Currency Exchanger</title>
 </head>
 
 <body>
-
+  <div class="container">
+    <h1>Currency Converter</h1>
+    <form id="selections">
+      <label for="usd-amount">Enter US Dollar Amount</label>
+      <input id="usd-amount" type="number">
+      <select class="form-control" id="convertedCurrency">
+        <option disables selected value> -- select a currency --</option>
+        <option>EUR - Euro</option>
+        <option>GBP - British Pound</option>
+        <option>INR - Indian Rupee</option>
+        <option>JPY - Japanese Yen</option>
+        <option>MXN - Mexican Peso</option>
+        <option>VND - Viatnamese Dong</option>
+      </select>
+      <button type="submit" class="button">Get Conversion</button>
+    </form>
+    <span id="output"></span>
+  </div>
 </body>
 
 </html>
