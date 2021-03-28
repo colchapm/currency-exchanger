@@ -5,38 +5,24 @@ import './css/styles.css';
 import CurrencyExchange from './exchanger.js';
 
 
-function getRates(response) {
-  console.log('inside getrates')
-  console.log(response.result)
+function getRates(response, conversionAmount, desiredCurrency) {
   if (response.result === "success") {
-    $(".showConversion").text(`1 USD = ${response.conversion_rates.JPY} yen`)
+    $(".showConversion").text(response["conversion_rates"][desiredCurrency]*[conversionAmount]);
   } else {
-    $(".showErrors").text(`There was an error processing your request ${response.message}`)
+    $(".showErrors").text(`There was an error processing your request ${response.message}`);
   }
 }
 
-async function makeApiCall(currency) {
-  console.log('inside makeapi call')
+async function makeApiCall(conversionAmount, desiredCurrency) {
   const response = await CurrencyExchange.getConversion();
-  getRates(response);
+  getRates(response, conversionAmount, desiredCurrency);
 }
 
 
 $(document).ready(function() {
   $("#conversion").click(function() {
-    let currency = $("#convertedCurrency").val();
-    makeApiCall(currency);
+    let conversionAmount = $("#usd-amount").val();
+    let desiredCurrency = $("#convertedCurrency").val();
+    makeApiCall(conversionAmount, desiredCurrency);
   });
 });
-
-// $(document).ready(function() {
-//   $("form#selections").submit(function() {
-//     let promise = CurrencyExchange.getConversion(currency);
-//     promise.then(function(response) {
-//       const body = JSON.parse(response);
-//         $("#output").text(`${USD} US Dollar = ${body.conversion_rates.${convertedCurrency}`);
-//       }, function(error) {
-//         $(".showErrors").text(`There was an error processing your request ${error}`);
-//     });
-//   });
-// });
