@@ -3,7 +3,7 @@
 
 # Currency Exchanger
 
-#### This is an application that converts USD to other currencies using API calls
+#### This is an application that converts USD to other currencies using API calls 
 
 #### By Collin Chapman
 
@@ -56,12 +56,6 @@ This project utilizes asynchronous code and API calls to create a currency excha
 * Open project in a development server in the browswer of your choice with the command `$ npm run start`_
 * _Lint code with the command `$ npm run lint`_
 * _Run tests in Jest with the command `$ npm test`_
-
-## Specifications
-
-| Behavior | Input | Output |
-|:---: |:---:|:---:|
-| The program should... | When it receives... | It should return...|
 
 ## Known Bugs
 
