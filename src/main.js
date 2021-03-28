@@ -6,7 +6,9 @@ import CurrencyExchange from './exchanger.js';
 
 
 function getRates(response, conversionAmount, currencyCode) {
-  if (response.result === "success") {
+  if ((response["conversion_rates"][currencyCode]) === undefined) {
+    $(".showErrors").text(`The selected currency code is not available`);
+  } else if (response.result === "success") {
     $(".showConversion").text(response["conversion_rates"][currencyCode]*[conversionAmount]);
   } else {
     $(".showErrors").text(`There was an error processing your request: ${response["error-type"]}`);
