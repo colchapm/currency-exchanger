@@ -5,24 +5,25 @@ import './css/styles.css';
 import CurrencyExchange from './exchanger.js';
 
 
-function getRates(response, conversionAmount, desiredCurrency) {
+function getRates(response, conversionAmount, currencyCode) {
   if (response.result === "success") {
-    $(".showConversion").text(response["conversion_rates"][desiredCurrency]*[conversionAmount]);
+    $(".showConversion").text(response["conversion_rates"][currencyCode]*[conversionAmount]);
   } else {
     $(".showErrors").text(`There was an error processing your request ${response.message}`);
   }
 }
 
-async function makeApiCall(conversionAmount, desiredCurrency) {
+async function makeApiCall(conversionAmount, currencyCode) {
   const response = await CurrencyExchange.getConversion();
-  getRates(response, conversionAmount, desiredCurrency);
+  getRates(response, conversionAmount, currencyCode);
 }
 
 
 $(document).ready(function() {
   $("#conversion").click(function() {
     let conversionAmount = $("#usd-amount").val();
-    let desiredCurrency = $("#convertedCurrency").val();
-    makeApiCall(conversionAmount, desiredCurrency);
+    const inputCurrency = $("#convertedCurrency").val();
+    let currencyCode = inputCurrency.substring(0,3);
+    makeApiCall(conversionAmount, currencyCode);
   });
 });
